@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "610626240582",
+    "project_id": "pharmacy-7dfd9",
+    "storage_bucket": "pharmacy-7dfd9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610626240582:android:cdd5e57c78f2173d4c0a47",
+        "android_client_info": {
+          "package_name": "com.hamdeis.chefaa.chefaa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610626240582-9mpuhm57ikfo6hc0j9s0g34pk6fbs9g4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0o1Wjvx7fMy0vp8FwI9_0fwVihyTBaJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "610626240582-9mpuhm57ikfo6hc0j9s0g34pk6fbs9g4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,45 @@
+ABSTRACT
+
+In recent years, Counterfeit products play an important role in product manufacturing industries.
+This affects the companies name, sales, and profit of the companies. Blockchain technology is used to identification of real products and detects fake products.
+Blockchain technology is the distributed, decentralized, and digital ledger that stores transactional information in the form of blocks in many databases which is connected with the chains. Blockchain technology is secure technology therefore any block cannot be changed or hacked.
+By using Blockchain technology, customers or users do not need to rely on third-party users for confirmation of product safety.
+In this project,we need detecte if this product is fake by sku , where a sku of the product is linked to a Blockchain.
+
+
+EXISTING SYSTEM
+
+Every popular brand has fake manufacturers selling a counterfeit item with misleading and invalid labels, which are sold at cheaper rates. Even the company experts may not be able to distinguish between counterfeit and original items.
+
+
+
+
+
+PROPOSED SYSTEM 
+
+If the original manufacturer embeds a sku on the product that is linked to the blockchain system, one could check the sku which would tell whether the product is fake or not.
+Suppose we come across a counterfeit item – we need to be able to identify that it is indeed fake through its sku, verified across a blockchain. A hacker attempting to add said counterfeit sku through the blockchain must find it impossible to modify the chain.
+Each product has a blockchain and each block in the blockchain will have a set of transactions that are associated with the product.
+Each block will consist of –
+1-an unique index (to differentiate between transactions)
+
+2-timestamp (when the block was created)
+
+2-○verification code
+
+3-proof
+
+4-set of transactions
+
+Suppose a person wants to buy a specific product. They must:
+Verify the skuof the product with the blockchain to verify the product’s validity,
+Insert the transaction data into a block while checking against it with the proof/nonce,
+Wait for the block to be verified across all the decentralized database so it can be inserted into the blockchain.
+Additionally, the blockchain must be resilient to attacks and modifications to the product list by unknown sources.
+
+
+
+Software Requirements:
+
+database – mongodb
+Language – node js

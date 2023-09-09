@@ -46,51 +46,99 @@ class _UserMapScreenState extends State<UserMapScreen> {
     ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: false);
 
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: theme.isDark
-                      ? Color.fromARGB(255, 23, 23, 23)
-                      : Colors.grey[200],
-                  hintText: 'lookFor'.tr(),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      borderSide: BorderSide.none),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Colors.grey,
-                  )),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Expanded(
-              child: BlocBuilder<GetNearCubit, GetNearCubitState>(
-                builder: (context, state) {
-                  if (state is GetNearCubitStateLoaded) {
-                    return MapView(
-                      pharmacies: [...state.users],
-                    );
-                  }
-
-                  return SizedBox();
-                },
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
               ),
-            )
-          ],
-        ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: theme.isDark
+                            ? Color.fromARGB(255, 23, 23, 23)
+                            : Colors.grey[200],
+                        hintText: 'lookFor'.tr(),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                            borderSide: BorderSide.none),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Expanded(
+                    child: BlocBuilder<GetNearCubit, GetNearCubitState>(
+                      builder: (context, state) {
+                        if (state is GetNearCubitStateLoaded) {
+                          return MapView(
+                            pharmacies: [...state.users],
+                          );
+                        }
+
+                        return SizedBox();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          DraggableScrollableSheet(
+            builder: (context, scrollController) =>
+                BlocBuilder<GetNearCubit, GetNearCubitState>(
+              builder: (context, state) {
+                if (state is GetNearCubitStateLoaded) {
+                  return Container(
+                      color: Colors.white,
+                      height: 300,
+                      width: double.infinity,
+                      child: SingleChildScrollView(
+                        controller: scrollController,
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 10),
+                              height: 5,
+                              width: 50,
+                              decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(10)),
+                            ),
+                            ...[...state.users].map((e) => Container(
+                                  color: Colors.grey[200],
+                                  child: ListTile(
+                                    title: Text(e.name.toString()),
+                                    subtitle: Text(e.distance.toString()),
+                                    leading: CircleAvatar(
+                                      backgroundImage: NetworkImage(
+                                          getPhotoLink(e.mainPhoto!)),
+                                    ),
+                                  ),
+                                ))
+                          ],
+                        ),
+                      ));
+                }
+                return Container(
+                    child: Center(
+                  child: CircularProgressIndicator(),
+                ));
+              },
+            ),
+          )
+        ],
       ),
-    ));
+    );
   }
 }
 
